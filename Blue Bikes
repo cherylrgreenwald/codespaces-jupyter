@@ -1,0 +1,117 @@
+# #### Blue Bikes
+# #
+# # Cheryl R. Greenwald, November 2022
+# # further exploration of CSCI E-7 assignment, Harvard Extension School
+# # reference: https://matplotlib.org/stable/api/_as_gen/
+# #            matplotlib.pyplot.scatter.html
+
+import csv
+import matplotlib.pyplot as plt
+
+def scatter_plot(filename):
+    """
+    From file, create scatter plot of Blue Bike stations.
+    Use different color for stations in given district.
+    """
+    
+    result = []
+    
+    try: 
+        with open(filename) as filename:
+            reader = csv.reader(filename)
+            first = True
+            
+            for row in reader:
+                if not first:
+                    result.append(row)
+                else:
+                    first = False
+    
+    except FileNotFoundError:
+        print('No such file:', filename)
+
+    x1, y1 = [], []
+    x2, y2 = [], []
+    x3, y3 = [], []
+    x4, y4 = [], []
+    x5, y5 = [], []
+    x6, y6 = [], []
+    x7, y7 = [], []
+    x8, y8 = [], []
+    x9, y9 = [], []
+    x10, y10 = [], []
+    x11, y11 = [], []
+    x12, y12 = [], []
+    x13, y13 = [], []
+    
+    for row in result:
+        latitude = float(row[4])
+        longitude = float(row[5])
+        district = row[6]
+        
+        if district == 'District':
+            pass
+        elif district == 'Arlington':
+            x1.append(longitude)
+            y1.append(latitude)
+        elif district == 'Boston':
+            x2.append(longitude)
+            y2.append(latitude)
+        elif district == 'Brookline':
+            x3.append(longitude)
+            y3.append(latitude) 
+        elif district == 'Cambridge':
+            x4.append(longitude)
+            y4.append(latitude)
+        elif district == 'Chelsea':
+            x5.append(longitude)
+            y5.append(latitude)
+        elif district == 'Everett':
+            x6.append(longitude)
+            y6.append(latitude)
+        elif district == 'Malden':
+            x7.append(longitude)
+            y7.append(latitude)
+        elif district == 'Medford':
+            x8.append(longitude)
+            y8.append(latitude)
+        elif district == 'Newton':
+            x9.append(longitude)
+            y9.append(latitude)
+        elif district == 'Revere':
+            x10.append(longitude)
+            y10.append(latitude)
+        elif district == 'Salem':
+            x11.append(longitude)
+            y11.append(latitude)
+        elif district == 'Somerville':
+            x12.append(longitude)
+            y12.append(latitude)
+        elif district == 'Watertown':
+            x13.append(longitude)
+            y13.append(latitude)
+        else:
+            print('A district is missing.')
+
+    plt.scatter(x1, y1, c='g', label = 'Arlington')
+    plt.scatter(x2, y2, c='k', label = 'Boston')
+    plt.scatter(x3, y3, c='b', label = 'Brookline')
+    plt.scatter(x4, y4, c='tab:gray', label = 'Cambridge')
+    plt.scatter(x5, y5, c='m', label = 'Chelsea')
+    plt.scatter(x6, y6, c='c', label = 'Everett')
+    plt.scatter(x7, y7, c='r', label = 'Malden')
+    plt.scatter(x8, y8, c='tab:brown', label = 'Medford')
+    plt.scatter(x9, y9, c='tab:olive', label = 'Newton')
+    plt.scatter(x10, y10, c='tab:pink', label = 'Revere')
+    plt.scatter(x11, y11, c='tab:gray', label = 'Salem')
+    plt.scatter(x12, y12, c='tab:purple', label = 'Somerville')
+    plt.scatter(x13, y13, c='tab:orange', label = 'Watertown')
+
+    plt.title(f'Boston Area Blue Bikes Stations')
+    plt.xlabel('Longitude')
+    plt.ylabel('Latitude')
+    
+    plt.legend()
+    plt.show()
+
+scatter_plot('BlueBikes.csv')
